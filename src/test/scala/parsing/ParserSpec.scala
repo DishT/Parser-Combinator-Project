@@ -1,6 +1,6 @@
 package parsing
 
-//import scala.language.postfixOps
+import scala.language.postfixOps
 import org.scalatest.FlatSpec
 
 class ParserSpec extends FlatSpec {
@@ -8,7 +8,7 @@ class ParserSpec extends FlatSpec {
   import parsing.Parser._
 
   /* some ideas for unit tests 
-  assert('a'.parse('a').get === 'a')
+  assert('a'.parse('a'.toString).get === 'a')
   
   assert(('a' orElse 'b').parse('a').get === 'a')
 

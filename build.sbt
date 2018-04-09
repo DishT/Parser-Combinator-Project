@@ -1,4 +1,4 @@
-name := "oop-ga-class07"
+name := "oop-ga-project"
 
 version := "1.0"
 
