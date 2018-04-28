@@ -88,6 +88,9 @@ trait Parser[A] {
       case ParseSuccess(newLoc, result, _) => f(result).apply(newLoc)
       case ParseFailure(newLoc, msg, isCommit) => ParseFailure(newLoc, msg, isCommit)
     }
+  def list[A, B](p: Parser[A], sep: Parser[B]): Parser[List[A]]
+  def ~>[B](p: Parser[B]): Parser[B] = (this andThen p) map (_._2)
+  def <~[B](p: Parser[B]): Parser[A] = (this andThen p) map (_._1)
 }
 
 
@@ -149,6 +152,8 @@ object Parser {
 
   def digits: Parser[Int] =
     (digit andThen repeat(digit)) map { case (d, ds) => (d :: ds) reduce (_ * 10 + _) }
-  }
+}
+
+
 
 

@@ -1,6 +1,6 @@
 package json
 
-import parsing.Parser
+import parsing._
 
 object JSON {
 
@@ -12,8 +12,30 @@ object JSON {
   case class JString(s: String) extends JSON
   case class JArray(a: IndexedSeq[JSON]) extends JSON
   case class JObject(a: Map[String, JSON]) extends JSON
+//
 
-  def jsonParser: Parser[JSON] = ???
+  def jsonParser: Parser[JSON] = new Parser[JSON] {
+    import Parser._
+//    import parsing._
+
+//    def list[A, B](p: Parser[A], sep: Parser[B]): Parser[List[A]]
+
+    def apply(loc: Location) = jValue.apply(loc)
+
+    def jValue: Parser[JSON] = jBool orElse jNumber orElse jNull orElse jString orElse jArray orElse jObject
+
+    def jNull: Parser[JNull.type] = string("null") map (_ => JNull)
+
+    def jBool: Parser[JBool] = string("true") map (_ => JBool(true)) orElse(string("false") map (_ => JBool(false)))
+
+    def jNumber: Parser[JNumber] = digits map (JNumber(_))
+
+    def jString: Parser[JString] = string(_) map (JString(_))
+
+    def jArray: Parser[JArray] = (char('[') ~> list(jValue, char(',')) <~ char(']')) map (JArray(_.toIndexedSeq))
+
+    def jObject: Parser[JObject] = ('{' ~> list(jValue, ',') <~ '}') map {case "{" ~> _ <~ "}" => JObject(Map() ++ _)}
+  }
   
   def parse(s: String): JSON = jsonParser.parse(s).get
 
