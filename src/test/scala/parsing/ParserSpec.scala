@@ -41,7 +41,7 @@ class ParserSpec extends FlatSpec {
   "repeat Parser" should "work properly" in {
     assert(repeat('a').parse("aaa").get === List('a', 'a', 'a'))
     assert((repeat('a') map (_.size)).parse("aaa").get === 3)
-    assert(repeat("[a-zA-Z]".r).parse("aaa").get === List("a", "a", "a"))
+    assert(repeat("[a-zA-Z]".r).parse("FlyHigh").get.mkString === "FlyHigh")
   }
 
   "repeatN Parser" should "work properly" in {
@@ -50,6 +50,7 @@ class ParserSpec extends FlatSpec {
 
   "digit" should "work properly" in {
     assert((digit flatMap (repeatN(_)('a'))).parse("3aaa").get === List('a', 'a', 'a'))
+    assert((double.parse("23.56").get === 23.56))
   }
 
   "attempt" should "work properly" in {

@@ -53,13 +53,15 @@ trait Parser[A] {
   }
 
   // Given two parsers pa1, pa2: Parser[A] the parser pa1 orElse pa2 first applies pa1 and returns its result on success.
-  // If pa1 failrs, the composite parser applies pa2 on the same input sequence as pa1 and returns pa2's result.
+  // If pa1 fails, the composite parser applies pa2 on the same input sequence as pa1 and returns pa2's result.
   def orElse(p: => Parser[A]): Parser[A] =
-    loc => apply(loc) match {
-      case ParseSuccess(newLoc, result, _) => ParseSuccess(newLoc, result, true)
-      case ParseFailure(newLoc, msg, _) if (newLoc.position > loc.position) => ParseFailure(newLoc, msg, true)
-      case ParseFailure(_, _, _) => p(loc)
-    }
+    loc =>
+      apply(loc) match {
+        case ParseSuccess(newLoc, result, _) => ParseSuccess(newLoc, result, true)
+        case ParseFailure(newLoc, msg, _) if (newLoc.position > loc.position) => ParseFailure(newLoc, msg, true)
+        case ParseFailure(_, _, _) => p(loc)
+      }
+
 
   // Given two parsers pa: Parser[A] and pb: Parser[B], the parser pa andThen pb works by first applying pa to parse the first part of the input sequence.
   // If pa succeeds with some result value a: A, it then applies pb to the remainder of the input.
@@ -88,7 +90,8 @@ trait Parser[A] {
       case ParseSuccess(newLoc, result, _) => f(result).apply(newLoc)
       case ParseFailure(newLoc, msg, isCommit) => ParseFailure(newLoc, msg, isCommit)
     }
-  def list[A, B](p: Parser[A], sep: Parser[B]): Parser[List[A]]
+
+  def list[A, B](p: Parser[A], sep: Parser[B]): Parser[List[A]] = ???
   def ~>[B](p: Parser[B]): Parser[B] = (this andThen p) map (_._2)
   def <~[B](p: Parser[B]): Parser[A] = (this andThen p) map (_._1)
 }
@@ -152,6 +155,9 @@ object Parser {
 
   def digits: Parser[Int] =
     (digit andThen repeat(digit)) map { case (d, ds) => (d :: ds) reduce (_ * 10 + _) }
+
+  def double: Parser[Double] =
+    ((digits andThen '.') andThen digits) map { case ((d,_),ds) => d + ( (ds.toDouble) / Math.pow(10, ds.toString.length) ) }
 }
 
 
