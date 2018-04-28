@@ -53,6 +53,10 @@ class ParserSpec extends FlatSpec {
     assert((double.parse("23.56").get === 23.56))
   }
 
+  "list" should "work properly" in {
+    assert( list( char('a'),char(':')).parse("a:a").get === List('a', 'a'))
+  }
+
   "attempt" should "work properly" in {
     assert((attempt('a' andThen 'a') orElse ('a' andThen 'b')).parse("ab").get === ('a', 'b'))
     assert((attempt(string("cd") andThen string("ba")) orElse (string("cd") andThen string("ab"))).parse("cdab").get ===("cd","ab"))

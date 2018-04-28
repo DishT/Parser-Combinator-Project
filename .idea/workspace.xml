@@ -4,6 +4,7 @@
     <list default="true" id="b5182100-d457-4013-be4c-420b67154fa6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/parsing/Parser.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/parsing/Parser.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/parsing/ParserSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/parsing/ParserSpec.scala" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/project/project/target/" />
@@ -22,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ParserSpec.scala" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ParserSpec.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/scala/parsing/ParserSpec.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="52" column="49" selection-start-line="52" selection-start-column="49" selection-end-line="52" selection-end-column="49" />
+            <state relative-caret-position="243">
+              <caret line="56" column="12" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -34,17 +35,17 @@
       <file leaf-file-name="JSONSpec.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/scala/json/JSONSpec.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="32" column="7" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
+            <state relative-caret-position="321">
+              <caret line="36" column="1" lean-forward="true" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Parser.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Parser.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/parsing/Parser.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="94" column="57" selection-start-line="94" selection-start-column="57" selection-end-line="94" selection-end-column="57" />
+            <state relative-caret-position="118">
+              <caret line="93" column="6" lean-forward="true" selection-start-line="93" selection-start-column="6" selection-end-line="93" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -67,9 +68,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/test/scala/json/JSONSpec.scala" />
-        <option value="$PROJECT_DIR$/src/test/scala/parsing/ParserSpec.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/json/JSON.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/parsing/Parser.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/parsing/ParserSpec.scala" />
       </list>
     </option>
   </component>
@@ -327,17 +328,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1524942278247</updated>
-      <workItem from="1524942280852" duration="3506000" />
+      <workItem from="1524942280852" duration="7914000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ParserSpec - 2018.04.28 at 15h 38m 12s.xml">
-      <configuration name="ParserSpec" configurationId="ScalaTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="ParserSpec - 2018.04.28 at 15h 39m 00s.xml">
-      <configuration name="ParserSpec" configurationId="ScalaTestRunConfiguration" />
-    </history-entry>
     <history-entry file="ParserSpec - 2018.04.28 at 15h 39m 41s.xml">
       <configuration name="ParserSpec" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
@@ -362,9 +357,15 @@
     <history-entry file="ParserSpec - 2018.04.28 at 15h 48m 34s.xml">
       <configuration name="ParserSpec" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
+    <history-entry file="ParserSpec - 2018.04.28 at 16h 05m 40s.xml">
+      <configuration name="ParserSpec" configurationId="ScalaTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="ParserSpec - 2018.04.28 at 17h 54m 39s.xml">
+      <configuration name="ParserSpec" configurationId="ScalaTestRunConfiguration" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3506000" />
+    <option name="totallyTimeSpent" value="7914000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="20" y="43" width="1400" height="757" extended-state="0" />
@@ -388,11 +389,11 @@
       <window_info anchor="right" id="Palette&#9;" />
       <window_info id="Image Layers" />
       <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.329429" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.329429" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="sbt-shell-toolwindow" visible="true" weight="0.329429" />
+      <window_info anchor="bottom" id="sbt-shell-toolwindow" weight="0.329429" />
       <window_info anchor="right" id="Gradle" />
       <window_info anchor="right" id="Theme Preview" />
       <window_info id="Favorites" side_tool="true" />
@@ -411,6 +412,13 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/parsing/Parser.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="93" column="6" lean-forward="true" selection-start-line="93" selection-start-column="6" selection-end-line="93" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/json/JSON.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -418,24 +426,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/scala/parsing/ParserSpec.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="52" column="49" selection-start-line="52" selection-start-column="49" selection-end-line="52" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/scala/json/JSONSpec.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="32" column="7" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
+        <state relative-caret-position="321">
+          <caret line="36" column="1" lean-forward="true" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/parsing/Parser.scala">
+    <entry file="file://$PROJECT_DIR$/src/test/scala/parsing/ParserSpec.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="94" column="57" selection-start-line="94" selection-start-column="57" selection-end-line="94" selection-end-column="57" />
+        <state relative-caret-position="243">
+          <caret line="56" column="12" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
         </state>
       </provider>
     </entry>

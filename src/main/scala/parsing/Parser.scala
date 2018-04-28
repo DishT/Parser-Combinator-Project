@@ -35,7 +35,7 @@ case class ParseFailure(loc: Location, exMsg: String, isCommit: Boolean) extends
   override def toString: String = exMsg
 }
 
-trait Parser[A] {
+trait Parser[+A] {
   self =>
   def apply(loc: Location): ParseState[A]
 
@@ -54,7 +54,7 @@ trait Parser[A] {
 
   // Given two parsers pa1, pa2: Parser[A] the parser pa1 orElse pa2 first applies pa1 and returns its result on success.
   // If pa1 fails, the composite parser applies pa2 on the same input sequence as pa1 and returns pa2's result.
-  def orElse(p: => Parser[A]): Parser[A] =
+  def orElse[B >: A](p: => Parser[B]): Parser[B] =
     loc =>
       apply(loc) match {
         case ParseSuccess(newLoc, result, _) => ParseSuccess(newLoc, result, true)
@@ -90,12 +90,9 @@ trait Parser[A] {
       case ParseSuccess(newLoc, result, _) => f(result).apply(newLoc)
       case ParseFailure(newLoc, msg, isCommit) => ParseFailure(newLoc, msg, isCommit)
     }
-
-  def list[A, B](p: Parser[A], sep: Parser[B]): Parser[List[A]] =
-    p andThen ( sep~> p) map { case (x,xs) => List(x,xs) } orElse {loc => ParseSuccess(loc, List[A](),true)}
-
   def ~>[B](p: Parser[B]): Parser[B] = (this andThen p) map (_._2)
   def <~[B](p: Parser[B]): Parser[A] = (this andThen p) map (_._1)
+
 }
 
 
@@ -104,7 +101,7 @@ object Parser {
   // Given a parser pa: Parser[A], the parser repeat(a) applies pa as many times as needed to parse the input sequence,
   // producing the list of result values of the subparses if successful
   def repeat[A](p: Parser[A]): Parser[List[A]] =
-    attempt(p andThen repeat(p) map { case (x,xs) => x::xs}) orElse {loc => ParseSuccess(loc, List[A](),true) }
+    attempt(p andThen repeat(p) map { case (x,xs) => x::xs}) orElse { loc => ParseSuccess(loc, List[A](),true) }
 
   // if the pattern accepted by the current parser repeats exactly n times for some given n
   def repeatN[A](n: Int)(p: Parser[A]): Parser[List[A]] = {
@@ -160,6 +157,10 @@ object Parser {
 
   def double: Parser[Double] =
     ((digits andThen '.') andThen digits) map { case ((d,_),ds) => d + ( (ds.toDouble) / Math.pow(10, ds.toString.length) ) }
+
+  def list[A, B](p: Parser[A], sep: Parser[B]): Parser[List[A]] =
+    p andThen ( sep~> p) map { case (x,xs) => List(x,xs) } orElse {loc => ParseSuccess(loc, List[A](),true)}
+
 }
 
 
