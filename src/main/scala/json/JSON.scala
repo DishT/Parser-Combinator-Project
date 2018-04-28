@@ -13,7 +13,7 @@ object JSON {
   case class JArray(a: IndexedSeq[JSON]) extends JSON
   case class JObject(a: Map[String, JSON]) extends JSON
 //
-
+/*
   def jsonParser: Parser[JSON] = new Parser[JSON] {
     import Parser._
 
@@ -38,5 +38,5 @@ object JSON {
   }
   
   def parse(s: String): JSON = jsonParser.parse(s).get
-
+*/
 }

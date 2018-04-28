@@ -4,7 +4,7 @@
 		module="oop-ga-project$sources"
 		revision="1.0"
 		status="integration"
-		publication="20180428150530"
+		publication="20180428190532"
 	/>
 	<configurations>
 		<conf name="compile" visibility="public" description=""/>

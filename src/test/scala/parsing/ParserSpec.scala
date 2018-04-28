@@ -55,6 +55,7 @@ class ParserSpec extends FlatSpec {
 
   "list" should "work properly" in {
     assert( list( char('a'),char(':')).parse("a:a").get === List('a', 'a'))
+    assert(("\\[" ~> list("abc", char(',')) <~ "\\]").parse("[abc,abc]").get === List("abc","abc"))
   }
 
   "attempt" should "work properly" in {
