@@ -21,6 +21,7 @@ class ParserSpec extends FlatSpec {
     assert("ab".parse("ab").get === "ab")
     assert("ab and cd".parse("ab and cd").get === "ab and cd")
     //assert("ab".apply('a'.toString).toString === "Error (0) Found 'ac' but expected 'ab'")
+    assert((string("aabb") orElse string("aacc")).parse("aacc").get === "aacc")
   }
 
   "orElse Parser" should "work properly" in {
@@ -40,6 +41,7 @@ class ParserSpec extends FlatSpec {
   "repeat Parser" should "work properly" in {
     assert(repeat('a').parse("aaa").get === List('a', 'a', 'a'))
     assert((repeat('a') map (_.size)).parse("aaa").get === 3)
+    assert(repeat("[a-zA-Z]".r).parse("aaa").get === List("a", "a", "a"))
   }
 
   "repeatN Parser" should "work properly" in {
