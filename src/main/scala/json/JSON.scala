@@ -29,11 +29,11 @@ object JSON {
 
     def jString: Parser[JString] = repeat("[a-zA-Z]".r) map (_.mkString) map (JString(_))
 
-    def jArray: Parser[JArray] = (char('[') ~> list(jValue, char(',')) <~ char(']')) map (JArray(_.toIndexedSeq))
+    def jArray:  Parser[JArray] = (char('[') ~> list(jValue, char(',')) <~ char(']')) map (JArray(_.toIndexedSeq))
 //    [1,2,3] ~> 1,2,3] , <~ 1,2,3 = List(1,2,3)
     def jObject: Parser[JObject] = ('{' ~> list(jValue, ',') <~ '}') map {case "{" ~> _ <~ "}" => JObject(Map() ++ _)}
 //   {"num":1.0}  "num" : 1.0, Map("num" -> 1.0)
-    def member: Parser[(String, Any)] = string( ) andThen ":" andThen jValue map { case name andThen ":" andThen jValue =>(name, jValue)}
+    def member: Parser[(String, Any)] = (repeat("[a-zA-Z]".r) map (_.mkString)) andThen ":" andThen jValue map { case name andThen ":" andThen jValue =>(name, jValue)}
 
   }
   
