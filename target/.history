@@ -1,0 +1,2 @@
+;reload; set _root_.org.jetbrains.sbt.StructureKeys.sbtStructureOptions in Global := "download resolveClassifiers resolveSbtClassifiers" ;*/*:dumpStructureTo /private/var/folders/7g/jzstc3t90n7d9v8_rbbpdmgm0000gn/T/sbt-structure.xml; session clear-all
+all {file:/Users/nehasharma/Desktop/CourseWork/OOP/HW/Parser-Combinator-Project/}parser-combinator-project/products {file:/Users/nehasharma/Desktop/CourseWork/OOP/HW/Parser-Combinator-Project/}parser-combinator-project/test:products
