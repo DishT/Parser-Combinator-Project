@@ -91,6 +91,7 @@ trait Parser[A] {
   def list[A, B](p: Parser[A], sep: Parser[B]): Parser[List[A]]
   def ~>[B](p: Parser[B]): Parser[B] = (this andThen p) map (_._2)
   def <~[B](p: Parser[B]): Parser[A] = (this andThen p) map (_._1)
+
 }
 
 
