@@ -57,8 +57,8 @@ trait Parser[A] {
   def orElse(p: => Parser[A]): Parser[A] =
     loc => apply(loc) match {
       case ParseSuccess(newLoc, result, _) => ParseSuccess(newLoc, result, true)
-      case ParseFailure(newLoc, msg, true) => ParseFailure(newLoc, msg, true)
-      case ParseFailure(_, _, false) => p(loc)
+      case ParseFailure(newLoc, msg, _) if (newLoc.position > loc.position) => ParseFailure(newLoc, msg, true)
+      case ParseFailure(_, _, _) => p(loc)
     }
 
   // Given two parsers pa: Parser[A] and pb: Parser[B], the parser pa andThen pb works by first applying pa to parse the first part of the input sequence.
@@ -141,7 +141,7 @@ object Parser {
   implicit def regex(r: Regex): Parser[String] =
     loc => loc.matchRegex(r) match {
       case Some((loc1, result)) => ParseSuccess(loc1, result, true)
-      case None => ParseFailure(loc, "Error (" + loc.position + ") Found '" + loc.input.substring(loc.position) + "' but expected '" + r.regex + "'", loc.position != 0)
+      case None => ParseFailure(loc, "Error (" + loc.position + ") Found '" + loc.input.substring(loc.position) + "' but expected '" + r.regex + "'", false)
     }
 
   def digit: Parser[Int] = "[0-9]".r map (_.toInt)
