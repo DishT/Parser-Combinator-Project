@@ -16,9 +16,6 @@ object JSON {
 
   def jsonParser: Parser[JSON] = new Parser[JSON] {
     import Parser._
-//    import parsing._
-
-//    def list[A, B](p: Parser[A], sep: Parser[B]): Parser[List[A]]
 
     def apply(loc: Location) = jValue.apply(loc)
 
@@ -30,14 +27,14 @@ object JSON {
 
     def jNumber: Parser[JNumber] = digits map (JNumber(_))
 
-    def jString: Parser[JString] = new JString( repeat("[a-zA-Z]".r).parse(_).get map (_.mkString))
+    def jString: Parser[JString] = repeat("[a-zA-Z]".r) map (_.mkString) map (JString(_))
 
     def jArray: Parser[JArray] = (char('[') ~> list(jValue, char(',')) <~ char(']')) map (JArray(_.toIndexedSeq))
-//
 //    [1,2,3] ~> 1,2,3] , <~ 1,2,3 = List(1,2,3)
     def jObject: Parser[JObject] = ('{' ~> list(jValue, ',') <~ '}') map {case "{" ~> _ <~ "}" => JObject(Map() ++ _)}
 //   {"num":1.0}  "num" : 1.0, Map("num" -> 1.0)
     def member: Parser[(String, Any)] = string( ) andThen ":" andThen jValue map { case name andThen ":" andThen jValue =>(name, jValue)}
+
   }
   
   def parse(s: String): JSON = jsonParser.parse(s).get
